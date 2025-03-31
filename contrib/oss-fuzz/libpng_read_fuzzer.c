@@ -45,13 +45,13 @@ void user_read_data(png_structp png_ptr, png_bytep data, size_t length) {
   buf_state->data += length;
 }
 
-void* limited_malloc(png_structp, png_alloc_size_t size) {
+void* limited_malloc(png_structp png_ptr, png_alloc_size_t size) {
   if (size > 8000000)
     return NULL;  // 13 libpng_read_fuzzer.c:50  // 16 libpng_read_fuzzer.c:50
   return malloc(size);  // 13 libpng_read_fuzzer.c:51  // 16 libpng_read_fuzzer.c:51
 }
 
-void default_free(png_structp, png_voidp ptr) {
+void default_free(png_structp png_ptr, png_voidp ptr) {
   free(ptr);
 }
 
